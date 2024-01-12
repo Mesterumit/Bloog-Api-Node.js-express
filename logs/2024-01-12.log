@@ -1,0 +1,2 @@
+::ffff:127.0.0.1 - - [12/Jan/2024:03:52:59 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0"
+::ffff:127.0.0.1 - - [12/Jan/2024:04:42:44 +0000] "POST /api/auth/register HTTP/1.1" 200 238 "-" "PostmanRuntime/7.35.0"
