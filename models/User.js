@@ -15,7 +15,7 @@ last_name:{
     type:String,
     trim:true,
     required:[true, 'Last_name is required'],
-    unique:truex
+    unique:true
 },
 email:{
     type:String,
@@ -62,7 +62,9 @@ UserSchema.methods.matchPassword = async function(enteredPassword){
 
 // Generate JWT token 
 UserSchema.methods.getToken= function (){
-    //  the fisr argument is payload that i want to hide whitin the token
+    //  the first argument is payload (we are checking that in Autherization middleware to protect routes)
+    //and we are verifying the token and get the "decode" which has  "id" in it
+    //  that i want to hide whitåin the token
     // and this user will have an "_id"
     return jwt.sign({id:this._id},process.env.JWT_SECRET,{expiresIn: process.env.JWT_EXPIRE})
 }

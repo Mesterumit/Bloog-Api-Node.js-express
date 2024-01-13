@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const ctrl = require('../controllers/users')
 const { protect, authorize } = require('../middlewares/Authentication')
+const query = require('../middlewares/query')
+const User = require('../models/User')
 
 
 // admin have to be logged in with "router.use(protect)"
@@ -9,7 +11,7 @@ router.use(protect)
 router.use(authorize('admin'))
 
 router.route('/')
-.get(ctrl.list)
+.get(query(User),ctrl.list)
 .post(ctrl.create)
 
 

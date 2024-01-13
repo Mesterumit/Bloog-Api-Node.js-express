@@ -3,12 +3,8 @@ const Model = require('../models/User')
 
 // @URL   GET/api/users
 exports.list = async(req,res)=>{
-    const data = await Model.find()
 
-    res.status(200).json({
-        succes: true,
-        data
-    })
+    res.status(200).json(res.results)
 }
 
 // @URL   GET/api/users/:id
@@ -22,7 +18,7 @@ exports.read = async(req,res)=>{
     })
 }
 
-// @URL  POST / api/users/:id
+// @URL  POST / api/users/
 exports.create = async(req,res)=>{
 
     const data = await Model.create(req.body)
@@ -37,7 +33,7 @@ exports.update = async(req,res)=>{
 
     const data = await Model.findByIdAndUpdate(req.params.id,req.body,{new:true,runValidators:true})
     res.status(202).json({
-        succes:truw,
+        succes:true,
         data
     })
 }

@@ -1,7 +1,13 @@
 const User = require('../models/User')
 const ErrorResponse = require('../utils/ErrorResponse')
 
-
+// Mock data
+// {
+//     "first_name":"Umit",
+//     "last_name":"Mester",
+//     "email":"umit@gmail.com",
+//     "password":"654321"
+// }
 // @URL  POST/api/auth/register
 exports.register = async(req,res)=>{
   
@@ -68,6 +74,11 @@ exports.updateDeatils =async (req,res)=>{
         data: user
     })
 }
+// Mock data from user
+// {
+//     "currentPassword":"123456",
+//     "newPassword":"654321"
+// }
 
 // @URL PUT/api/auth/password
 //  @access private (req.user)

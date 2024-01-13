@@ -5,7 +5,8 @@ require('dotenv').config();
 require('express-async-errors')
 const express = require('express')
 const app =express()
-const path = require('path')
+const path = require('path');
+// const User = require('./models/User');
 
 const PORT = process.env.PORT || 8080;
 const HOST = process.env.HOST || '127.0.0.1'
@@ -24,6 +25,26 @@ app.use(require('./middlewares/logger'))
 // if we use the path (static('public)) ==> it is absolute path
 // so we need a relative path, we can't uset (express.static('path))
 app.use(express.static(path.join(__dirname,'public')))
+
+
+// app.use(async(req,res,next)=>{
+//     // in postman
+//     // url?seach[first_name]=te
+//     // this will help us to find the user in search bar, and end point in url
+
+//     // so i will do filter method to find string from firts letter of it
+//     //  in here i will use mogodb pattern
+//     // i will look patter whith in string
+//     // when it comes to patterns for string need to regularexpration
+//     // and regex are suportted by mongodb not mongoose
+//     // normaly u can find the user by user's name info "User.find({first_name:'umit})"
+//     const user = await User.find({first_name:{$regex:'^u', $options:'i'}}).select('first_name last_name email').sort('-createdAt')
+//     // select is helping us to show only information we want to
+//     // "-createdAt" is doing as DESCEN
+//     // these all methos such as "regex, select, sort" are providing by mongoose
+//     console.log("user :" + user)
+//     next()
+// })
 
 
 // App Routes
