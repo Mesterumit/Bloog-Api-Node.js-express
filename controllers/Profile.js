@@ -3,9 +3,10 @@ const ErrorResponse = require('../utils/ErrorResponse')
 
 // @URL Get/api/profile/
 exports.list = async(req,res)=>{
-   
-    console.log(res.results)
-    res.status(200).json({succes:true, data:res.results})
+
+    const data = await Profile.find()
+    console.log(data)
+    res.status(200).json({succes:true, data})
 }
 // @URL POST/api/profile/
 exports.create =async(req,res)=>{
@@ -49,8 +50,8 @@ exports.update =async(req,res) =>{
      if(req.file){
         req.body.image =req.file.originalname
     }
-   
-    const data = await Profile.findByIdAnUpdate(req.params.id, req.body,{new:true, runValidators:true})
+   console.log("profile id :" +req.params.id)
+    const data = await Profile.findByIdAndUpdate(req.params.id, req.body,{new:true, runValidators:true})
 
     res.status(202).json({
         succes: true,

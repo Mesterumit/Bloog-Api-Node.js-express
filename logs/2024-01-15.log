@@ -64,3 +64,4 @@
 ::ffff:127.0.0.1 - - [15/Jan/2024:23:11:26 +0000] "PUT /api/posts/65a22790f588bb01a276ab8d HTTP/1.1" 500 76 "-" "PostmanRuntime/7.35.0"
 ::ffff:127.0.0.1 - - [15/Jan/2024:23:11:32 +0000] "GET /api/posts/ HTTP/1.1" 200 1958 "-" "PostmanRuntime/7.35.0"
 ::ffff:127.0.0.1 - - [15/Jan/2024:23:12:38 +0000] "PUT /api/posts/65a5985d45936b5c5ed3fa1d HTTP/1.1" 403 69 "-" "PostmanRuntime/7.35.0"
+::ffff:127.0.0.1 - - [16/Jan/2024:04:53:37 +0000] "GET /api/profile/ HTTP/1.1" 200 15 "-" "PostmanRuntime/7.35.0"

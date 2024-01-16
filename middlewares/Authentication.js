@@ -19,7 +19,6 @@ exports.protect = async(req,res,next)=>{
     const decode = jwt.verify(token,process.env.JWT_SECRET)
     //  now all info about user is attached to the "req"
     req.user = await User.findById(decode.id)
-    req.profile = await Profile.findOne({userId: req.user._id})
     next()
 } 
 
@@ -31,12 +30,14 @@ exports.authorize =(...roles)=>(req,res,next)=>{
     next()
 }
 
-exports.isAdminOrOwner=(model, filterName, filter={}) =>async(req,res,next)=>{
-    const resource = await model.findById({_id:req.params.id} || filter)
-    console.log(resource)
-    if(req.user && (req.user.role ==="admin" || resource[filterName].toString()===req.user._id))
-       return next()
-    else
-    throw new ErrorResponse(403, "No Permission Admin login or account owner")
-
+exports.isAdminOrOwner=(model, filterName) =>async(req,res,next)=>{
+    //
+    const resource = await model.findOne({_id: req.params.id})
+    console.log("resource :" + resource)
+    if(req.user && (req.user.role === 'admin' || resource[filterName].toString()===req.user._id.toString())){
+        return next()
+    }else{
+       throw new ErrorResponse(403, 'No Permission Admin login or account owner')
+    }
+   
 }

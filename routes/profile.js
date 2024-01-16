@@ -11,6 +11,7 @@ router.route('/')
 .post(upload.single('image') ,ctrl.create)
 
 
+
 router.route('/:id')
 .get( ctrl.read)
 .put(isAdminOrOwner(Profile, 'userId'),upload.single('image'), ctrl.update)
