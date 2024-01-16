@@ -13,12 +13,12 @@ title:{
 content:{
     type:String,
     trim:true,
-    required:[true, 'Ctagory name is required']
+    required:[true, 'content name is required']
 },
 image:{
     type:String,
     trim:true,
-    required:[true, 'Ctagory name is required']
+    default:"no-photo.jpg"
 },
 //  instead of id we can add something human readable
 //  /api/paosts/new-post-2023
@@ -39,6 +39,7 @@ author:{
     type:Schema.Types.ObjectId,
     ref:'User',
     required:true
+    
 }
 
 
@@ -48,7 +49,7 @@ author:{
 // OutPUT is ('a-mon-on-the-moon) 
 PostSchema.pre('save', function(next){
     this.slug = slugify(this.title,{lower:true})
-    text()
+    next()
 })
 
 // Add publish date
@@ -57,8 +58,12 @@ PostSchema.pre('save', function(next){
 PostSchema.pre('save', function(next){
     if(this.status === 'published')
      this.published_date = new Date()
-    else if(this.isModified('published')&& this.status === "published") 
-     this.published_date = new Date()
+     
+    else if(this.isModified('published')&& this.status === "published"){
+        this.published_date = new Date()
+    } 
+     
+    next()
 })
 
 

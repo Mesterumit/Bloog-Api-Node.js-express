@@ -64,7 +64,7 @@ UserSchema.methods.matchPassword = async function(enteredPassword){
 UserSchema.methods.getToken= function (){
     //  the first argument is payload (we are checking that in Autherization middleware to protect routes)
     //and we are verifying the token and get the "decode" which has  "id" in it
-    //  that i want to hide whitåin the token
+    //  that i want to hide whitin the token
     // and this user will have an "_id"
     return jwt.sign({id:this._id},process.env.JWT_SECRET,{expiresIn: process.env.JWT_EXPIRE})
 }
