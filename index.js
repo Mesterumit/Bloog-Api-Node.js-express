@@ -1,9 +1,11 @@
 require('colors');
 require('dotenv').config();
+var cors = require('cors')
 //  we add "express-async-errors" , so we can cominicate the erorr class we have extened
 //  and we dont need to have "try and catch"
 require('express-async-errors')
 const express = require('express')
+
 const app =express()
 const path = require('path');
 // const User = require('./models/User');
@@ -16,9 +18,13 @@ const MODE =process.env.MODE  || 'production';
 require('./config/db')()
 
 
+
 // Middlewares
 //Parse JSON
 app.use(express.json()) // we are having the "req.body" in that way
+// using cors, so i can use this "api" for front end
+// CROS ORIGIN RESOURCE SHARING
+app.use(cors())
 // loger
 app.use(require('./middlewares/logger'))
 //set static folder

@@ -31,9 +31,23 @@ exports.authorize =(...roles)=>(req,res,next)=>{
 }
 
 exports.isAdminOrOwner=(model, filterName) =>async(req,res,next)=>{
-    //
+    // in here, i am  looking for the profile with the profile's "id"
     const resource = await model.findOne({_id: req.params.id})
+    // "resource" is giving the profile with "id, image, adress and userId"
     console.log("resource :" + resource)
+    // "req.params.id" is giving the profile's id
+    console.log(req.params.id)
+    // in this if condition, i cehk the user and his role
+    //"resource[filterName]" fro this part , it is coming from Profile's route
+    // it is sending "Model of PRPFILE AND userId" , it is route go and check to see
+    // so in here, it compares the "userId" in profile's object to the userId from user's login
+    // resource :{
+    //     _id: new ObjectId('65a5b1864bbab7ca06a9a545'), // profile id. ""req.params.id""
+    //     image: 'profile-image.jpeg',
+    //     adress: '10 howel st, MA,newtonville',            filterName become as userId from route
+    //     userId: new ObjectId('658f8094e9b28f12fb0f447a'),resource[filterName].toString()===req.user._id.toString()
+    //     __v: 0
+    //   }
     if(req.user && (req.user.role === 'admin' || resource[filterName].toString()===req.user._id.toString())){
         return next()
     }else{

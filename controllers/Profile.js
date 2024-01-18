@@ -64,8 +64,8 @@ exports.update =async(req,res) =>{
 exports.delete =async(req,res)=> {
 
    
-    const data = await Profile.findById(req.params.id)
-    await data.deleteOne()
+    const profileUser = await Profile.findById(req.params.id)
+    await profileUser.deleteOne()
 
     res.status(204).json({
         succes: true,

@@ -10,5 +10,13 @@ router.use('/categories', require('./category') )
 router.use('/posts', require('./post') )
 // route api/profile
 router.use('/profile',require('./profile'))
+// route api/comments
+router.use('/comments', require('./comments'))
+//route api/like
+router.use('/like', require('./like'))
+//route api/view
+router.use('/views', require('./views'))
+// route  /documents 
+router.use('/documents', require('./doc'))
 
 module.exports = router 
