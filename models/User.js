@@ -32,6 +32,11 @@ password:{
     minlength: 6,
    
 },
+image:{
+    type:String,
+    trim:true,
+    default:"no-photo.jpg"
+},
 role:{
     type:String,
     trim:true,
