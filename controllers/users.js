@@ -21,6 +21,10 @@ exports.read = async(req,res)=>{
 // @URL  POST / api/users/
 exports.create = async(req,res)=>{
 
+      // if uploading file image added it to the req.body
+      if(req.file){
+        req.body.image =req.file.originalname
+    }
     const data = await Model.create(req.body)
     res.status(201).json({
         succes:true,
