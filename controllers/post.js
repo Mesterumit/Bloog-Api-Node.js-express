@@ -14,7 +14,7 @@ exports.list = async(req,res)=>{
 // @URL   GET/api/posts/:id
 exports.read = async(req,res)=>{
 
-    const data = await Model.findById(req.params.id).populate('userId','first_name')
+    const data = await Model.findById(req.params.id).populate('author','first_name')
     await View.create({postId:req.params.id, userId:req.user._id})
     const views = await View.find({postId:req.params.id})
     const comments = await Comment.find({postId:req.params.id}).populate('userId','email').select('content')
