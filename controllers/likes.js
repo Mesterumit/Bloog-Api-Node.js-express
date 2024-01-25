@@ -25,12 +25,29 @@ exports.createLike = async(req,res)=>{
 
 //@URL GET/api/like/:id
 exports.remove = async(req,res)=>{
-    const data = await Like.findById(req.params.id)
-    await data.deleteOne()
-    res.status(202).json({
-        succes:true,
-        data:{}
-    })
+//     const data = await Like.findById(req.params.id)
+//     await data.deleteOne()
+//     res.status(202).json({
+//         succes:true,
+//         data:{}
+//     })
+// }
+
+const data = await Like.findById(req.params.id);
+
+if (!data) {
+    return res.status(404).json({
+        success: false,
+        error: 'Like not found',
+    });
+}
+
+await data.deleteOne();
+
+res.status(202).json({
+    success: true,
+    data: {},
+});
 }
 
 // I want to get specific "post" how many like it recived
