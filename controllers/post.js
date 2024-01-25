@@ -1,4 +1,5 @@
 const Model = require('../models/Post')
+const User = require('../models/User')
 const View = require('../models/view')
 const Like = require('../models/PostLike')
 const Comment = require('../models/Comment')
@@ -13,12 +14,12 @@ exports.list = async(req,res)=>{
 // @URL   GET/api/posts/:id
 exports.read = async(req,res)=>{
 
-    const data = await Model.findById(req.params.id)
+    const data = await Model.findById(req.params.id).populate('userId','first_name')
     await View.create({postId:req.params.id, userId:req.user._id})
     const views = await View.find({postId:req.params.id})
     const comments = await Comment.find({postId:req.params.id}).populate('userId','email').select('content')
     const likes = await Like.find({postId:req.params.id})
-
+    // const user = await   User.find({first_name:req.user.first_name})
     req.body.user= req.user._id
     res.status(200).json({
         succes:true,
