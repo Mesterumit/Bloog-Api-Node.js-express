@@ -25,30 +25,30 @@ exports.createLike = async(req,res)=>{
 
 //@URL GET/api/like/:id
 exports.remove = async(req,res)=>{
-//     const data = await Like.findById(req.params.id)
-//     await data.deleteOne()
-//     res.status(202).json({
-//         succes:true,
-//         data:{}
-//     })
+    const data = await Like.findById(req.params.id)
+    await data.deleteOne()
+    res.status(202).json({
+        succes:true,
+        data:{}
+    })
+}
+
+// const data = await Like.findOne({ _id: req.params.id, postId: req.body.postId });
+
+// if (!data) {
+//     return res.status(404).json({
+//         success: false,
+//         error: 'Like not found',
+//     });
 // }
 
-const data = await Like.findOne({ _id: req.params.id, postId: req.body.postId });
+// await data.deleteOne();
 
-if (!data) {
-    return res.status(404).json({
-        success: false,
-        error: 'Like not found',
-    });
-}
+// res.status(202).json({
+//     success: true,
+//     data: {},
+// });
 
-await data.deleteOne();
-
-res.status(202).json({
-    success: true,
-    data: {},
-});
-}
 
 // I want to get specific "post" how many like it recived
 // first i am getting the likes, after that, i am looking for the postId then i can look all the post with this id

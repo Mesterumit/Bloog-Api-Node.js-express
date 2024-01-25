@@ -18,13 +18,14 @@ exports.read = async(req,res)=>{
     await View.create({postId:req.params.id, userId:req.user._id})
     const views = await View.find({postId:req.params.id})
     const comments = await Comment.find({postId:req.params.id}).populate('userId','email').select('content')
-    const likes = await Like.find({postId:req.params.id})
+    const likes = await Like.find({postId:req.params.id}).populate('userId', 'email');
     // const user = await   User.find({first_name:req.user.first_name})
     req.body.user= req.user._id
     res.status(200).json({
         succes:true,
         views: views.length,
         likes: likes.length,
+        likes,
         comments,
         data
         
