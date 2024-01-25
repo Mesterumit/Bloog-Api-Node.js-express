@@ -33,7 +33,7 @@ exports.remove = async(req,res)=>{
 //     })
 // }
 
-const data = await Like.findById(req.params.id);
+const data = await Like.findOne({ _id: req.params.id, postId: req.body.postId });
 
 if (!data) {
     return res.status(404).json({
