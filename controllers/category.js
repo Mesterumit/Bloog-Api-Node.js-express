@@ -1,13 +1,13 @@
 const Model = require('../models/Category')
 
 
-// @URL   GET/api/posts
+// @URL   GET/api/categories
 exports.list = async(req,res)=>{
     console.log(res.results)
     res.status(200).json(res.results)
 }
 
-// @URL   GET/api/posts/:id
+// @URL   GET/api/categories/:id
 exports.read = async(req,res)=>{
 
     const data = await Model.findById(req.params.id)
@@ -18,7 +18,7 @@ exports.read = async(req,res)=>{
     })
 }
 
-// @URL  POST / api/post
+// @URL  POST /api/categories
 exports.create = async(req,res)=>{
 
     const data = await Model.create(req.body)
@@ -28,7 +28,7 @@ exports.create = async(req,res)=>{
     })
 }
 
-// @URL  PUT/api/posts/:id
+// @URL  PUT/api/categories/:id
 exports.update = async(req,res)=>{
 
     const data = await Model.findByIdAndUpdate(req.params.id,req.body,{new:true,runValidators:true})

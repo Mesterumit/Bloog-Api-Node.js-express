@@ -19,6 +19,7 @@ router.route('/')
  
 router.route('/:id')
 .get(protect,ctrl.read)
+.get(protect,ctrl.usersPost)
 .put(protect,isAdminOrOwner(Post, 'author'),upload.single('image'),ctrl.update)
 .delete(protect, isAdminOrOwner(Post, 'author'), ctrl.delete)
 

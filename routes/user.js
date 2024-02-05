@@ -20,6 +20,8 @@ router.route('/:id')
 .put(ctrl.update)
 .delete(ctrl.delete)
 
+router.route('/:id/posts')
+
 
 
 module.exports = router

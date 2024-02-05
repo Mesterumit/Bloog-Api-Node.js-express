@@ -67,7 +67,7 @@ exports.update = async(req,res)=>{
 }
 
 
-//  @URL  delete/api/posts/:id
+//  @URL  DELETE/api/posts/:id
 exports.delete = async(req,res)=>{
 
     const user = await Model.findById(req.params.id)
@@ -78,3 +78,13 @@ exports.delete = async(req,res)=>{
     })
 }
 
+
+
+//  get posts by userId
+// @URL GET '/api/users/:userId/posts', 
+exports.usersPost = async(req, res) => {
+    const userId = parseInt(req.params.userId);
+    const userPosts = await Model.find({author:userId});
+
+    res.json(userPosts);
+};
