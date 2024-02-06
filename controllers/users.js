@@ -1,6 +1,8 @@
 const Model = require('../models/User')
 const Post = require('../models/Post')
-
+const View = require('../models/view')
+const Comment = require('../models/Comment')
+const Like = require('../models/PostLike')
 // @URL   GET/api/users
 exports.list = async(req,res)=>{
 
@@ -59,10 +61,20 @@ exports.delete = async(req,res)=>{
 exports.usersPost = async(req, res) => {
     // req.body.author = req.user._id
     const userId = req.params.id
-   
-    const userPosts = await  Post.find({author:userId})
+    await View.create({postId:req.params.id, userId:req.user._id})
+    const views = await View.find({postId:req.params.id})
+    const comments = await Comment.find({postId:req.params.id}).populate('userId','email').select('content')
+    const likes = await Like.find({postId:req.params.id}).populate('userId', 'email');
+    const userPosts = await  Post.find({author:userId })
 
-    res.json(userPosts);
+    res.status(200).json({
+        userPosts,
+        views: views.length,
+        likes: likes.length,
+        likes,
+        comments,
+
+    });
 };
 
 
