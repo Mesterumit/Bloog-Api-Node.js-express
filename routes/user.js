@@ -20,7 +20,7 @@ router.route('/:id')
 .put(ctrl.update)
 .delete(ctrl.delete)
 
-router.route('/:id/posts')
+router.route('/:id/posts').get(protect,ctrl.usersPost)
 
 
 

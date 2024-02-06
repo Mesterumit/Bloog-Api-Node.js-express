@@ -54,3 +54,13 @@ exports.delete = async(req,res)=>{
     })
 }
 
+//  get posts by userId
+// @URL GET '/api/users/:userId/posts', 
+exports.usersPost = async(req, res) => {
+    req.body.author = req.user._id
+    const userPosts = await Model.find({author:userId});
+
+    res.json(userPosts);
+};
+
+
