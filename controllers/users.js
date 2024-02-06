@@ -1,5 +1,5 @@
 const Model = require('../models/User')
-
+const Post = require('../models/Post')
 
 // @URL   GET/api/users
 exports.list = async(req,res)=>{
@@ -57,8 +57,10 @@ exports.delete = async(req,res)=>{
 //  get posts by userId
 // @URL GET '/api/users/:userId/posts', 
 exports.usersPost = async(req, res) => {
-    req.body.author = req.user._id
-    const userPosts = await   Model.findById(req.params.id)
+    // req.body.author = req.user._id
+    const userId = req.params.id
+   
+    const userPosts = await  Post.find({author:userId})
 
     res.json(userPosts);
 };
