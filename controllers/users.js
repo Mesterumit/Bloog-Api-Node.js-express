@@ -65,14 +65,10 @@ exports.usersPost = async(req, res) => {
     const views = await View.find({postId:req.params.id})
     const comments = await Comment.find({postId:req.params.id}).populate('userId','email').select('content')
     const likes = await Like.find({postId:req.params.id}).populate('userId', 'email');
-    const userPosts = await  Post.find({author:userId })
+    const userPosts = await  Post.find({author:userId, likes:likes, comments:comments,views:views, likes:likes.length})
 
     res.status(200).json({
-        userPosts,
-        views: views.length,
-        likes: likes.length,
-        likes,
-        comments,
+        userPosts
 
     });
 };
