@@ -27,7 +27,7 @@ slug:String,
 published_date:Date,
 status:{
     type:String,
-    default:'published',
+    default:'unpublished',
     enum:['published','unpublished'],
 },
 category:{
