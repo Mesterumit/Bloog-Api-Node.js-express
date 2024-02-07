@@ -30,7 +30,14 @@ app.use(require('./middlewares/logger'))
 //set static folder
 // if we use the path (static('public)) ==> it is absolute path
 // so we need a relative path, we can't uset (express.static('path))
-app.use(express.static(path.join(__dirname,'public')))
+// Serve static files including JavaScript files with correct MIME type
+app.use(express.static(path.join(__dirname, 'public'), {
+    setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript');
+        }
+    }
+}));
 
 
 // app.use(async(req,res,next)=>{
