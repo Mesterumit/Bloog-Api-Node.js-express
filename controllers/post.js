@@ -6,11 +6,8 @@ const Comment = require('../models/Comment')
 
 // @URL   GET/api/posts
 exports.list = async(req,res)=>{
-    const views = await View.find({postId:req.params.id})
-    res.status(200).json({
-        result:res.results,
-        views: views.length,
-    })
+   
+    res.status(200).json(res.results)
 }
 
 // evreytime, read the post, it will get a views
